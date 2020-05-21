@@ -21,7 +21,7 @@ System that allows to run a small pharmacy chain.
 - PostgreSQL
 - pgAdmin 4
 - GUI: Swing
-- IDE: Intellij Ultimate
+- IDE: Intellij IDEA
 - GitHub
 
 ## Project Structure
@@ -32,22 +32,22 @@ System that allows to run a small pharmacy chain.
 
 ## A little sneak peek at GUI
 ### Login Panel
-![InitialPanel](src/main/resources/readMeImg/login.png)
+<img src="https://github.com/krzysztof-warszawski/Pharmacy/blob/master/src/main/resources/readMeImg/login.png" alt="LoginlPanel" width="700" height="699" />
 
 ### PharmacistPanel (Sale Mode)
-![Pharmacist](src/main/resources/readMeImg/Pharmacist.png)
+<img src="https://github.com/krzysztof-warszawski/Pharmacy/blob/master/src/main/resources/readMeImg/Pharmacist.png" alt="Pharmacist" width="700" height="699" />
 
 ### ManagerPanel
-![ManagerPanel](src/main/resources/readMeImg/ManagerPanel.png)
+<img src="https://github.com/krzysztof-warszawski/Pharmacy/blob/master/src/main/resources/readMeImg/ManagerPanel.png" alt="ManagerPanel" width="700" height="699" />
 
 ### AdminMenu
-![AdminMenu](src/main/resources/readMeImg/AdminMenu.png)
+<img src="https://github.com/krzysztof-warszawski/Pharmacy/blob/master/src/main/resources/readMeImg/AdminMenu.png" alt="AdminMenu" width="700" height="699" />
 
 ### AdminPharmacy
-![AdminPharmacy](src/main/resources/readMeImg/AdminPharmacy.png)
+<img src="https://github.com/krzysztof-warszawski/Pharmacy/blob/master/src/main/resources/readMeImg/AdminPharmacy.png" alt="AdminPharmacy" width="700" height="699" />
 
 ### AdminUpdateUser
-![AdminUpdateUser](src/main/resources/readMeImg/AdminUpdateUser.png)
+<img src="https://github.com/krzysztof-warszawski/Pharmacy/blob/master/src/main/resources/readMeImg/AdminUpdateUser.png" alt="AdminUpdateUser" width="700" height="699" />
 
 ### AdminShowUsers
-![AdminShowUsers](src/main/resources/readMeImg/AdminShowUsers.png)
+<img src="https://github.com/krzysztof-warszawski/Pharmacy/blob/master/src/main/resources/readMeImg/AdminShowUsers.png" alt="AdminShowUsers" width="700" height="699" />
