@@ -17,28 +17,22 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void createUser(UserData userData) {
 
-        final String sqlCreateNewUser1 = "INSERT INTO public.users(\n" +
-                "    first_name, last_name, address, email, phone_number)\n" +
-                "VALUES (?, ?, ?, ?, ?);";
-
-        final String sqlCreateNewUser2 = "INSERT INTO public.user_credentials(\n" +
-                "    login, password, user_id)\n" +
-                "VALUES (?, ?, (SELECT MAX(users.user_id) FROM public.users));";
-
-        final String sqlCreateNewUser3 = "INSERT INTO public.pharmacy_staff(\n" +
-                "    user_id, job_title, salary, pharmacy_id)\n" +
-                "VALUES ((SELECT MAX(users.user_id) FROM public.users), ?, ?, ?);";
+        final String sqlCreateNewUser1 = "WITH ins1 AS (\n" +
+                "INSERT INTO public.users(first_name, last_name, address, email, phone_number)\n" +
+                "VALUES (?, ?, ?, ?, ?)\n" +
+                "RETURNING user_id),\n" +
+                "     ins2 AS (INSERT INTO public.user_credentials(login, password, user_id)\n" +
+                "VALUES (?, ?, (SELECT user_id FROM ins1)))\n" +
+                "\n" +
+                "INSERT INTO public.pharmacy_staff(user_id, job_title, salary, pharmacy_id)\n" +
+                "VALUES ((SELECT user_id FROM ins1), ?, ?, ?);";
 
         Connection connection = initializeDataBaseConnection();
 
         PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
-        PreparedStatement preparedStatement3 = null;
 
         try {
             preparedStatement1 = connection.prepareStatement(sqlCreateNewUser1);
-            preparedStatement2 = connection.prepareStatement(sqlCreateNewUser2);
-            preparedStatement3 = connection.prepareStatement(sqlCreateNewUser3);
 
             preparedStatement1.setString(1, userData.getFirstName());
             preparedStatement1.setString(2, userData.getLastName());
@@ -46,26 +40,75 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement1.setString(4, userData.getEmail());
             preparedStatement1.setString(5, userData.getPhoneNumber());
 
-            preparedStatement2.setString(1, userData.getLogin());
-            preparedStatement2.setString(2, userData.getPassword());
+            preparedStatement1.setString(6, userData.getLogin());
+            preparedStatement1.setString(7, userData.getPassword());
 
-            preparedStatement3.setString(1, userData.getJobTitle());
-            preparedStatement3.setInt(2, userData.getSalary());
-            preparedStatement3.setInt(3, userData.getPharmacyId());
+            preparedStatement1.setString(8, userData.getJobTitle());
+            preparedStatement1.setInt(9, userData.getSalary());
+            preparedStatement1.setInt(10, userData.getPharmacyId());
 
             preparedStatement1.executeUpdate();
-            preparedStatement2.executeUpdate();
-            preparedStatement3.executeUpdate();
 
         } catch (SQLException e) {
             System.err.println("Error during invoke SQL query: \n" + e.getMessage());
             throw new RuntimeException("Error during invoke SQL query");
         } finally {
             closeDataBaseResources(connection, preparedStatement1);
-            closeDataBaseResources(connection, preparedStatement2);
-            closeDataBaseResources(connection, preparedStatement3);
+            System.out.println("ALL CLOSED");
         }
     }
+//    @Override
+//    public void createUser(UserData userData) {
+//
+//        final String sqlCreateNewUser1 = "INSERT INTO public.users(\n" +
+//                "    first_name, last_name, address, email, phone_number)\n" +
+//                "VALUES (?, ?, ?, ?, ?);";
+//
+//        final String sqlCreateNewUser2 = "INSERT INTO public.user_credentials(\n" +
+//                "    login, password, user_id)\n" +
+//                "VALUES (?, ?, (SELECT MAX(users.user_id) FROM public.users));";
+//
+//        final String sqlCreateNewUser3 = "INSERT INTO public.pharmacy_staff(\n" +
+//                "    user_id, job_title, salary, pharmacy_id)\n" +
+//                "VALUES ((SELECT MAX(users.user_id) FROM public.users), ?, ?, ?);";
+//
+//        Connection connection = initializeDataBaseConnection();
+//
+//        PreparedStatement preparedStatement1 = null;
+//        PreparedStatement preparedStatement2 = null;
+//        PreparedStatement preparedStatement3 = null;
+//
+//        try {
+//            preparedStatement1 = connection.prepareStatement(sqlCreateNewUser1);
+//            preparedStatement2 = connection.prepareStatement(sqlCreateNewUser2);
+//            preparedStatement3 = connection.prepareStatement(sqlCreateNewUser3);
+//
+//            preparedStatement1.setString(1, userData.getFirstName());
+//            preparedStatement1.setString(2, userData.getLastName());
+//            preparedStatement1.setString(3, userData.getAddress());
+//            preparedStatement1.setString(4, userData.getEmail());
+//            preparedStatement1.setString(5, userData.getPhoneNumber());
+//
+//            preparedStatement2.setString(1, userData.getLogin());
+//            preparedStatement2.setString(2, userData.getPassword());
+//
+//            preparedStatement3.setString(1, userData.getJobTitle());
+//            preparedStatement3.setInt(2, userData.getSalary());
+//            preparedStatement3.setInt(3, userData.getPharmacyId());
+//
+//            preparedStatement1.executeUpdate();
+//            preparedStatement2.executeUpdate();
+//            preparedStatement3.executeUpdate();
+//
+//        } catch (SQLException e) {
+//            System.err.println("Error during invoke SQL query: \n" + e.getMessage());
+//            throw new RuntimeException("Error during invoke SQL query");
+//        } finally {
+//            closeDataBaseResources(connection, preparedStatement1);
+//            closeDataBaseResources(connection, preparedStatement2);
+//            closeDataBaseResources(connection, preparedStatement3);
+//        }
+//    }
 
     @Override
     public UserData readUser(int userId) {

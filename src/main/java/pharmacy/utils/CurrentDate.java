@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class CurrentDate {
 
-    private LocalDate localDate = LocalDate.now();
+    private final LocalDate localDate = LocalDate.now();
 
     public String getCurrentDate() {
         return DateTimeFormatter.ofPattern("yyy/MM/dd").format(localDate);

@@ -20,15 +20,19 @@ public class PharmacyApp {
     public boolean login(String userLogin, String userPassword) {
         UserProfileService.initializeUserProfile(userLogin, userPassword);
         if (UserProfileService.isCorrect()) {
-            if (UserProfileService.getJobTitle().equals(PHARMACIST)) {
-                pharmacistPanel = new PharmacistPanel();
-                mainFrame.panelSwitchOver(pharmacistPanel);
-            } else if (UserProfileService.getJobTitle().equals(UNIT_MANAGER)) {
-                managerPanel = new ManagerPanel();
-                mainFrame.panelSwitchOver(managerPanel);
-            } else if (UserProfileService.getJobTitle().equals(ADMIN)) {
-                adminMenuPanel = new AdminMenuPanel();
-                mainFrame.panelSwitchOver(adminMenuPanel);
+            switch (UserProfileService.getJobTitle()) {
+                case PHARMACIST:
+                    pharmacistPanel = new PharmacistPanel();
+                    mainFrame.panelSwitchOver(pharmacistPanel);
+                    break;
+                case UNIT_MANAGER:
+                    managerPanel = new ManagerPanel();
+                    mainFrame.panelSwitchOver(managerPanel);
+                    break;
+                case ADMIN:
+                    adminMenuPanel = new AdminMenuPanel();
+                    mainFrame.panelSwitchOver(adminMenuPanel);
+                    break;
             }
             return true;
         } else {

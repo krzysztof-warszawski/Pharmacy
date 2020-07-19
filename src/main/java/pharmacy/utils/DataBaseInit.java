@@ -21,9 +21,11 @@ public class DataBaseInit {
     public static void closeDataBaseResources(Connection connection, Statement statement) {
         try {
             if (statement != null) {
+                System.out.println("Closing statement");
                 statement.close();
             }
             if (connection != null) {
+                System.out.println("Closing connection");
                 connection.close();
             }
         } catch (SQLException e) {
