@@ -16,5 +16,5 @@ public interface UserRepository {
 
     List<UserData> getAllUsers();
 
-    List<UserData> getAllUsersByUnit(int pharmacyId);
+    List<UserData> getAllUsersByPharmacy(int pharmacyId);
 }

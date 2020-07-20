@@ -130,7 +130,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void setUsersByUnit() {
-        this.usersByUnit = userRepository.getAllUsersByUnit(pharmacyId);
+        this.usersByUnit = userRepository.getAllUsersByPharmacy(pharmacyId);
     }
 
     @Override

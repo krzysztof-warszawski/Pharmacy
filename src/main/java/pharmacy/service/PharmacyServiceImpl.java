@@ -78,7 +78,7 @@ public class PharmacyServiceImpl  implements PharmacyService {
     @Override
     public void setPharmacyUnitManager(int index) {
         int pId = pharmacyDataList.get(index).getPharmacyId();
-        for (UserData ud : userRepository.getAllUsersByUnit(pId)) {
+        for (UserData ud : userRepository.getAllUsersByPharmacy(pId)) {
             if (ud.getJobTitle().equals("Unit Manager")) {
                 this.pharmacyUnitManager = ud.getFirstName() + " " + ud.getLastName();
             }

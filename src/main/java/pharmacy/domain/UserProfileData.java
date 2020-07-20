@@ -4,7 +4,7 @@ public class UserProfileData extends UserData{
 
     private boolean correctCredentials;
 
-    public boolean isCorrectCredentials() {
+    public boolean isUserAuthorized() {
         return correctCredentials;
     }
 
