@@ -16,37 +16,34 @@ public class MedicineRepositoryImpl implements MedicineRepository {
 
     @Override
     public void createMedicine(MedicineData medicineData) {
-        final String sqlAddMedicine1 = "INSERT INTO public.medicines(\n" +
-                "    medicine_name, price, medicine_description)\n" +
-                "VALUES (?, ?, ?);";
+        final String sqlAddMedicine1 = "WITH new_medicine AS(\n" +
+                "    INSERT INTO medicines(medicine_name, price, medicine_description)\n" +
+                "        VALUES (?, ?, ?)\n" +
+                "        RETURNING medicine_id AS id),\n" +
+                "    storage_update (ph_id) AS(\n" +
+                "        SELECT DISTINCT pharmacy_id FROM pharmacy_storage\n" +
+                ")\n" +
+                "INSERT INTO pharmacy_storage(pharmacy_id, medicine_id, quantity)\n" +
+                "SELECT ph_id, (SELECT id FROM new_medicine), 45 FROM storage_update;";
 
-        final String sqlAddMedicine2 = "INSERT INTO public.pharmacy_storage(\n" +
-                "    pharmacy_id, medicine_id, quantity)\n" +
-                "VALUES (1, (SELECT MAX(medicines.medicine_id) FROM public.medicines), 0),\n" +
-                " (2, (SELECT MAX(medicines.medicine_id) FROM public.medicines), 0),\n" +
-                " (3, (SELECT MAX(medicines.medicine_id) FROM public.medicines), 0);";
 
         Connection connection = initializeDataBaseConnection();
         PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
 
         try {
             preparedStatement1 = connection.prepareStatement(sqlAddMedicine1);
-            preparedStatement2 = connection.prepareStatement(sqlAddMedicine2);
 
             preparedStatement1.setString(1, medicineData.getMedicineName());
             preparedStatement1.setDouble(2, medicineData.getPrice());
             preparedStatement1.setString(3, medicineData.getMedicineDescription());
 
             preparedStatement1.executeUpdate();
-            preparedStatement2.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("Error during invoke SQL query: \n" + e.getMessage());
             throw new RuntimeException("Error during invoke SQL query");
         } finally {
             closeDataBaseResources(connection, preparedStatement1);
-            closeDataBaseResources(connection, preparedStatement2);
         }
     }
 

@@ -97,7 +97,7 @@ INNER JOIN pharmacy_staff ps
 DELETE FROM public.users;
 
 --------------------------- user_credentials ---------------------------
-SELECT user_credentials_id, login, password, user_id
+SELECT login, password, user_id
 	FROM public.user_credentials;
 
 INSERT INTO public.user_credentials(
