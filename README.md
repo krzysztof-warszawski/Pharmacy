@@ -17,10 +17,11 @@ System that allows to run a small pharmacy chain.
 ## Tech Stack
 - Java 8
 - Maven
-- ElephantSQL
+- JUnit 4
 - PostgreSQL
-- pgAdmin 4
 - GUI: Swing
+- ElephantSQL
+- pgAdmin 4
 - IDE: Intellij IDEA
 - GitHub
 
