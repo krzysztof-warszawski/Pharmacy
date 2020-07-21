@@ -44,8 +44,6 @@ public interface ReceiptService {
 
     void setBasketToString();
 
-    String getBasketToString();
-
     void setTotalSale(Date date1, Date date2);
 
     double getTotalSale();

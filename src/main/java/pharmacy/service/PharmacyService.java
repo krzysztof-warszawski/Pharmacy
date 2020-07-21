@@ -10,8 +10,6 @@ public interface PharmacyService {
 
     PharmacyData readPharmacyData();
 
-    void updatePharmacyNameList();
-
     String[] getPharmacyNameList();
 
     void setPharmacyDataList();

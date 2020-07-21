@@ -20,8 +20,6 @@ public interface UserService {
 
     void updateAllEmployeeList();
 
-    void updateUnitEmployeeList();
-
     String[] getAllEmployeeList();
 
     String[] getUnitEmployeeList();

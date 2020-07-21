@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MedicineServiceImpl implements MedicineService {
 
-    private MedicineRepository medicineRepository;
+    private final MedicineRepository medicineRepository;
     private MedicineData newMedicineData;
     private MedicineData medicineData;
     private List<MedicineData> medicineDataList;
@@ -71,7 +71,7 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public void setMedicineData(int index) {
+    public void findMedicineData(int index) {
         int mId = medicineDataList.get(index).getMedicineId();
         this.medicineData = medicineRepository.readMedicine(mId);
     }
@@ -84,5 +84,9 @@ public class MedicineServiceImpl implements MedicineService {
             medicineNameList[i] = md.getMedicineName();
             i++;
         }
+    }
+
+    public void setMedicineData(MedicineData medicineData) {
+        this.medicineData = medicineData;
     }
 }

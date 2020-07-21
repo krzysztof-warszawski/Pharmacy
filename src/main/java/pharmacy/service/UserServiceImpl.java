@@ -75,12 +75,6 @@ public class UserServiceImpl implements UserService {
         setAllEmployeeList();
     }
 
-    @Override
-    public void updateUnitEmployeeList() {
-        setUsersByUnit();
-        setUnitEmployeeList();
-    }
-
     // =================== Getters/Setters ===================
     @Override
     public String[] getAllEmployeeList() {

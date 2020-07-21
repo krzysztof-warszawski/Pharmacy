@@ -85,7 +85,7 @@ public class AdminShowMedicinesPanel extends JPanel {
             if (medicineList.isSelectionEmpty()) {
                 JOptionPane.showMessageDialog(null,"Nothing is selected!","Information", 1);
             } else {
-                medicineService.setMedicineData(medicineList.getSelectedIndex());
+                medicineService.findMedicineData(medicineList.getSelectedIndex());
                 adminReadMedicinePanel = new AdminReadMedicinePanel(medicineService);
                 mainFrame.panelSwitchOver(adminReadMedicinePanel);
             }
@@ -98,7 +98,7 @@ public class AdminShowMedicinesPanel extends JPanel {
             if (medicineList.isSelectionEmpty()) {
                 JOptionPane.showMessageDialog(null,"Nothing is selected!","Information", 1);
             } else {
-                medicineService.setMedicineData(medicineList.getSelectedIndex());
+                medicineService.findMedicineData(medicineList.getSelectedIndex());
                 adminUpdateMedicinePanel = new AdminUpdateMedicinePanel(medicineService);
                 mainFrame.panelSwitchOver(adminUpdateMedicinePanel);
             }

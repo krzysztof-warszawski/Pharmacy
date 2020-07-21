@@ -4,13 +4,7 @@ import java.util.Random;
 
 public class PasswordGenerator {
 
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword() {
+    public String setPassword() {
         char[] charArray = new char[12];
         char c;
 
@@ -24,6 +18,6 @@ public class PasswordGenerator {
             c = (char) (new Random().nextInt(5) + 33);
             charArray[3+i] = c;
         }
-        this.password = new String(charArray);
+        return new String(charArray);
     }
 }

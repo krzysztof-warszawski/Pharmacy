@@ -30,6 +30,7 @@ public class ReceiptServiceImpl implements ReceiptService {
     private String[] basket;
     private String basketToString;
 
+
     public ReceiptServiceImpl() {
         this.pharmacyStorageRepository = new PharmacyStorageRepositoryImpl();
         this.receiptRepository = new ReceiptRepositoryImpl();
@@ -155,13 +156,8 @@ public class ReceiptServiceImpl implements ReceiptService {
     }
 
     @Override
-    public String getBasketToString() {
-        return basketToString;
-    }
-
-    @Override
     public void setBasketToString() {
-        basketToString = Arrays.toString(basket).replaceAll("[\\[\\]]|null|, ","");
+        this.basketToString = Arrays.toString(basket).replaceAll("[\\[\\]]|null|, ","");
     }
 
 
@@ -187,4 +183,13 @@ public class ReceiptServiceImpl implements ReceiptService {
     public ReceiptData getReceiptData() {
         return receiptData;
     }
+
+    public void setBasket(String[] basket) {
+        this.basket = basket;
+    }
+
+    public String getBasketToString() {
+        return basketToString;
+    }
+
 }

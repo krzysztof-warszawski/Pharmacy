@@ -38,12 +38,6 @@ public class PharmacyServiceImpl  implements PharmacyService {
     }
 
     @Override
-    public void updatePharmacyNameList() {
-        setPharmacyDataList();
-        setPharmacyNameList();
-    }
-
-    @Override
     public String[] getPharmacyNameList() {
         return pharmacyNameList;
     }

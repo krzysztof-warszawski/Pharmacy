@@ -116,8 +116,7 @@ public class AdminUpdateUserPanel extends JPanel {
         passwordGeneratorButton = new JButton(icon);
         passwordGeneratorButton.setBounds(585,405,30,30);
         passwordGeneratorButton.addActionListener(e -> {
-            passwordGenerator.setPassword();
-            passwordTextField.setText(passwordGenerator.getPassword());
+            passwordTextField.setText(passwordGenerator.setPassword());
         });
 
         jobTitleLabel = new JLabel("job title", SwingConstants.LEFT);

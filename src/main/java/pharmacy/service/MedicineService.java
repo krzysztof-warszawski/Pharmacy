@@ -22,7 +22,7 @@ public interface MedicineService {
 
     List<MedicineData> getMedicineDataList();
 
-    void setMedicineData(int index);
+    void findMedicineData(int index);
 
     void setMedicineNameList();
 }
