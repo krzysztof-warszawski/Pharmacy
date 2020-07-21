@@ -29,7 +29,9 @@ System that allows to run a small pharmacy chain.
 ![projectStructure](src/main/resources/readMeImg/projectStructure.png)
 #
 ![pharmacyPackageDiagram](src/main/resources/readMeImg/pharmacyPackageDiagram.png)
-
+#
+## UML Diagram
+![UML](src/main/resources/readMeImg/UML.png)
 ## A little sneak peek at GUI
 ### Login Panel
 <img src="https://github.com/krzysztof-warszawski/Pharmacy/blob/master/src/main/resources/readMeImg/login.png" alt="LoginlPanel" width="700" height="699" />

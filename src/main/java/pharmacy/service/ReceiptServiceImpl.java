@@ -16,8 +16,8 @@ import java.util.List;
 
 public class ReceiptServiceImpl implements ReceiptService {
 
-    private PharmacyStorageRepository pharmacyStorageRepository;
-    private ReceiptRepository receiptRepository;
+    private final PharmacyStorageRepository pharmacyStorageRepository;
+    private final ReceiptRepository receiptRepository;
     private PharmacyStorageData medicineToBasket;
     private ReceiptData receiptData;
     private List<PharmacyStorageData> pharmacyStorageDataList;
