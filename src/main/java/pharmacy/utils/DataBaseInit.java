@@ -1,18 +1,23 @@
 package pharmacy.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 public class DataBaseInit {
 
-    private static final String POSTGRES_JDBC_URL = "jdbc:postgresql://balarama.db.elephantsql.com:5432/hlqpjaqb";
-    private static final String POSTGRES_USER_NAME = "hlqpjaqb";
-    private static final String POSTGRES_USER_PASS = "VXJZE-kE4jRKdasnT2MQos4LgcOATz7G";
-
     public static Connection initializeDataBaseConnection() {
-        try {
+        try(InputStream input = DataBaseInit.class.getClassLoader().getResourceAsStream("application.properties")) {
+
+            Properties properties = new Properties();
+            properties.load(input);
+
             System.out.println("Establishing database connection");
-            return DriverManager.getConnection(POSTGRES_JDBC_URL, POSTGRES_USER_NAME, POSTGRES_USER_PASS);
-        } catch (SQLException e) {
+            return DriverManager.getConnection(properties.getProperty("db.url"), properties.getProperty("db.user"), properties.getProperty("db.password"));
+
+        } catch (SQLException | IOException e) {
+
             System.err.println("Server can't initialize database connection: \n" + e);
             throw new RuntimeException("Server can't initialize database connection");
         }
