@@ -1,6 +1,6 @@
 # Pharmacy
 
-System that allows to run a small pharmacy chain.
+System that allows running a pharmacy
 
 ## Business needs
 - 3 levels of access (admin, unit manager, pharmacist)
